@@ -1,0 +1,1 @@
+from umongo import Instance, Document, fields, validate
