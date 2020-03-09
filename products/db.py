@@ -1,16 +1,18 @@
-from asyncio import get_event_loop
 from motor import motor_asyncio
 from pymongo import ASCENDING
-from umongo import Instance, Document, EmbeddedDocument, fields
+from umongo import ( 
+    Instance,
+    MotorAsyncIOInstance,
+    Document,
+    EmbeddedDocument,
+    fields
+)
 
 from settings import config
 
-HOST = config['mongo']['host']
-PORT = config['mongo']['port']
-DATABASE = config['mongo']['database']
 
-db = motor_asyncio.AsyncIOMotorClient(HOST, PORT)[DATABASE]
-instance = Instance(db)
+instance = MotorAsyncIOInstance()
+
 
 @instance.register
 class Parameter(EmbeddedDocument):
@@ -33,10 +35,32 @@ class Product(Document):
         default=[]
     )
 
-async def init_indexes():
-    await Product.collection.create_index([("parameters.key", ASCENDING),
-                    ("parameters.value", ASCENDING)])
-    await Product.collection.create_index([("name", ASCENDING)])
+    class Meta:
+        collection_name = "products"
 
-loop = get_event_loop()
-loop.run_until_complete(init_indexes())
+
+async def init_indexes():
+    await Product.collection.create_index([
+        ("parameters.key", ASCENDING),
+        ("parameters.value", ASCENDING)
+    ])
+    await Product.collection.create_index([
+        ("name", ASCENDING)
+    ])
+
+
+async def init_mongo(app):
+    host = config['mongo']['host']
+    port = config['mongo']['port']
+    database = config['mongo']['database']
+
+    con = motor_asyncio.AsyncIOMotorClient(host, port)
+    instance.init(con[database])
+
+    app['db_con'] = con
+
+    await init_indexes()
+
+
+async def close_mongo(app):
+    app['db_con'].close()

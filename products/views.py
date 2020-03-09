@@ -65,8 +65,11 @@ class ProductsView(web.View):
 
             product_list = []
             async for product in products_cursor:
-                product_list.append(product.dump())
-                
+                product_list.append({
+                    "id": str(product.pk),
+                    "name": product.name
+                })
+
             return web.json_response({
                 "data": product_list
             })
@@ -92,7 +95,7 @@ class ProductsView(web.View):
         except marshmallow.exceptions.ValidationError as e:
             return web.json_response({
                 "message": e.messages
-             }, status=status.HTTP_400_BAD_REQUEST)
+            }, status=status.HTTP_400_BAD_REQUEST)
         except:
             return web.json_response({
                 "message": "Unknown error."
