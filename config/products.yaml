@@ -1,8 +1,4 @@
-postgres:
-  database: aiohttpdemo_polls
-  user: aiohttpdemo_user
-  password: aiohttpdemo_pass
+mongo:
+  database: test
   host: localhost
-  port: 5432
-  minsize: 1
-  maxsize: 5
+  port: 27017

@@ -1,9 +1,9 @@
 from aiohttp import web
 
 from settings import config
-from routes import setup_routes
+from views import routes
 
 app = web.Application()
-setup_routes(app)
+app.router.add_routes(routes)
 app['config'] = config
 web.run_app(app)

@@ -2,3 +2,4 @@ umongo[motor]
 motor
 aiohttp
 pyyaml
+python-status
