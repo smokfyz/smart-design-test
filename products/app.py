@@ -13,4 +13,4 @@ app['config'] = config
 app.on_startup.append(init_mongo)
 app.on_cleanup.append(close_mongo)
 
-web.run_app(app)
+web.run_app(app, **config['app'])
