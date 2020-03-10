@@ -103,7 +103,7 @@ Response:
 }
 ```
 5. `$ curl --request GET http://localhost:8080/products/?name=Test%20Product%201 | json_pp`  
-Фильрация списка продуктов по названию.  
+Фильтрация списка продуктов по названию.  
 Response:
 ```json
 {
