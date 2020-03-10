@@ -4,10 +4,10 @@
 
 OS: Ubuntu 18.04
 
-1. `$ sudo apt install docker.io git python3-pip python3-venv curl`
-If Docker is not installed before.
-2. `$ sudo usermod -aG docker $USER`
-Restart (or logout)
+1. `$ sudo apt install docker.io git python3-pip python3-venv curl`  
+If Docker is not installed before.  
+2. `$ sudo usermod -aG docker $USER`  
+Restart (or logout)  
 3. `$ sudo systemctl start docker`
 4. `$ docker run -d -p 27017:27017 mongo`
 5. `$ git clone https://github.com/smokfyz/smart-design-test`
