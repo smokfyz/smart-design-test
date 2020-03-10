@@ -27,7 +27,7 @@ Restart (or logout)
 
 ## Тестовый сценарий
 
-1. `$ curl --request GET http://localhost:8080/products/  | json_pp`
+1. `$ curl --request GET http://localhost:8080/products/  | json_pp`  
 Получаем список всех продуктов.
 ```json
 {
@@ -35,7 +35,7 @@ Restart (or logout)
 }
 ```
 
-2. `$ echo '{"name": "Test Product 1", "description": "Product for test", "parameters": [{"key": "size", "value": "M"}, {"key": "color", "value": "red"}]}' | curl --request POST -d @- http://localhost:8080/products/ | json_pp`
+2. `$ echo '{"name": "Test Product 1", "description": "Product for test", "parameters": [{"key": "size", "value": "M"}, {"key": "color", "value": "red"}]}' | curl --request POST -d @- http://localhost:8080/products/ | json_pp`  
 Добавляем продукт.  
 Response:
 ```json
@@ -57,7 +57,7 @@ Response:
    }
 }
 ```
-3. `$ echo '{"name": "Test Product 2", "description": "Product for test", "parameters": [{"key": "size", "value": "L"}, {"key": "color", "value": "blue"}]}' | curl --request POST -d @- http://localhost:8080/products/ | json_pp`
+3. `$ echo '{"name": "Test Product 2", "description": "Product for test", "parameters": [{"key": "size", "value": "L"}, {"key": "color", "value": "blue"}]}' | curl --request POST -d @- http://localhost:8080/products/ | json_pp`  
 Добавляем продукт.  
 Response:
 ```json
@@ -79,7 +79,7 @@ Response:
    }
 }
 ```
-4. `$ echo '{"name": "Test Product 3", "description": "Product for test", "parameters": [{"key": "size", "value": "L"}, {"key": "color", "value": "yellow"}]}' | curl --request POST -d @- http://localhost:8080/products/ | json_pp`
+4. `$ echo '{"name": "Test Product 3", "description": "Product for test", "parameters": [{"key": "size", "value": "L"}, {"key": "color", "value": "yellow"}]}' | curl --request POST -d @- http://localhost:8080/products/ | json_pp`  
 Добавляем продукт.  
 Response:
 ```json
@@ -101,7 +101,7 @@ Response:
    }
 }
 ```
-5. `$ curl --request GET http://localhost:8080/products/?name=Test%20Product%201 | json_pp`
+5. `$ curl --request GET http://localhost:8080/products/?name=Test%20Product%201 | json_pp`  
 Фильрация списка продуктов по названию.  
 Response:
 ```json
@@ -114,7 +114,7 @@ Response:
    ]
 }
 ```
-6. `$ curl -G -d "parameters[color]=blue&parameters[size]=L" http://localhost:8080/products/ | json_pp`
+6. `$ curl -G -d "parameters[color]=blue&parameters[size]=L" http://localhost:8080/products/ | json_pp`  
 Фильтрация списка продукта по параметрам (color = blue и size = L)  
 Response:
 ```json
@@ -127,7 +127,7 @@ Response:
    ]
 }
 ```
-7. `$ curl -G http://localhost:8080/products/5e66c98b93f5d5bbb062c4ae | json_pp`
+7. `$ curl -G http://localhost:8080/products/5e66c98b93f5d5bbb062c4ae | json_pp`  
 Получение сведений о товаре по ID.  
 Response:
 ```json
