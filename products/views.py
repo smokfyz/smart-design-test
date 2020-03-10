@@ -73,7 +73,7 @@ class ProductsView(web.View):
             return web.json_response({
                 "data": product_list
             })
-        except EOFError:
+        except:
             return web.json_response({
                 "message": "Unknown error."
             }, status=status.HTTP_400_BAD_REQUEST)
