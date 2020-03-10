@@ -1,6 +1,6 @@
 # smart-design-test
 
-## Инструкция
+## Установка
 
 OS: Ubuntu 18.04
 
