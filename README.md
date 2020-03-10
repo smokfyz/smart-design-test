@@ -4,13 +4,18 @@
 
 OS: Ubuntu 18.04
 
-1. `$ git clone https://github.com/smokfyz/smart-design-test`
-2. `$ cd ./assaia-test`
-3. `$ python3 -m venv venv`
-4. `$ source venv/bin/activate`
-5. `$ pip install -r requirements.txt`
-6. `$ docker run -d -p 27017:27017 mongo`
-7. `$ python3 products/app.py`
+1. `$ sudo apt install docker.io git python3-pip python3-venv curl`
+If Docker is not installed before.
+2. `$ sudo usermod -aG docker $USER`
+Restart (or logout)
+3. `$ sudo systemctl start docker`
+4. `$ docker run -d -p 27017:27017 mongo`
+5. `$ git clone https://github.com/smokfyz/smart-design-test`
+6. `$ cd ./smart-design-test`
+7. `$ python3 -m venv venv`
+8. `$ source venv/bin/activate`
+9. `$ pip install -r requirements.txt`
+10. `$ python3 products/app.py`
 
 ## Тестовый сценарий
 
@@ -65,20 +70,21 @@ OS: Ubuntu 18.04
 4. `$ echo '{"name": "Test Product 3", "description": "Product for test", "parameters": [{"key": "size", "value": "L"}, {"key": "color", "value": "yellow"}]}' | curl --request POST -d @- http://localhost:8080/products/ | json_pp`
 ```json
 {
-   "data" : [
-      {
-         "id" : "5e66c97293f5d5bbb062c4ad",
-         "name" : "Test Product 1"
-      },
-      {
-         "id" : "5e66c98b93f5d5bbb062c4ae",
-         "name" : "Test Product 2"
-      },
-      {
-         "id" : "5e66c99893f5d5bbb062c4af",
-         "name" : "Test Product 3"
-      }
-   ]
+   "data" : {
+      "description" : "Product for test",
+      "name" : "Test Product 3",
+      "parameters" : [
+         {
+            "value" : "L",
+            "key" : "size"
+         },
+         {
+            "value" : "yellow",
+            "key" : "color"
+         }
+      ],
+      "id" : "5e676e13fc7297fc53a73af3"
+   }
 }
 ```
 5. `$ curl --request GET http://localhost:8080/products/?name=Test%20Product%201 | json_pp`
