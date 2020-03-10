@@ -36,17 +36,8 @@ class Product(Document):
     )
 
     class Meta:
+        indexes = ("name", ("parameters.key", "parameters.value"))
         collection_name = "products"
-
-
-async def init_indexes():
-    await Product.collection.create_index([
-        ("parameters.key", ASCENDING),
-        ("parameters.value", ASCENDING)
-    ])
-    await Product.collection.create_index([
-        ("name", ASCENDING)
-    ])
 
 
 async def init_mongo(app):
@@ -59,7 +50,7 @@ async def init_mongo(app):
 
     app['db_con'] = con
 
-    await init_indexes()
+    await Product.ensure_indexes()
 
 
 async def close_mongo(app):
