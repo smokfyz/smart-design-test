@@ -14,7 +14,7 @@ Restart (or logout)
 6. `$ cd ./smart-design-test`
 7. `$ python3 -m venv venv`
 8. `$ source venv/bin/activate`
-9. `$ pip install -r requirements.txt`\
+9. `$ pip install -r requirements.txt`
 
 ## Конфигурация
 
