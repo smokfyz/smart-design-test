@@ -28,7 +28,8 @@ Restart (or logout)
 ## Тестовый сценарий
 
 1. `$ curl --request GET http://localhost:8080/products/  | json_pp`  
-Получаем список всех продуктов.
+Получаем список всех продуктов.  
+Response:
 ```json
 {
    "data" : []
